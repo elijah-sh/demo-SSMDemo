@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!--
+    <bean id="helloWorld" class="com.spring.bean.HelloWorld" scope="singleton" init-method="init"  destroy-method="destroy">
+         <property name="message" value="Hello World! - "/>
+     </bean>-->
+
+        <!--  生命周期  init-method 对于方法-->
+    <!--<bean id="exampleBean" class="ExampleBean" init-method="init" destroy-method="destroy"/>-->
+    <!--<bean id="initHelloWorld" class="InitHelloWorld" />-->
+
+
+   <!--  依赖注入 -->
+
+    <!-- Definition for textEditor bean  onstructor-arg 构造器参数 -->
+    <bean id="textEditor" class="com.spring.di.TextEditor">
+        <constructor-arg ref="spellChecker"/>
+    </bean>
+    <!-- Definition for spellChecker bean -->
+    <!--<bean id="spellChecker" class="com.spring.di.SpellChecker">
+    </bean>-->
+
+    <!--  使用注解 -->
+<!--
+    <context:annotation-config/>
+-->
+    <context:component-scan base-package="com.spring.di" />
+    <!-- Definition for student bean -->
+    <bean id="student" class="com.spring.bean.Student">
+        <property name="name" value="Zara" />
+        <property name="age" value="11"/>
+    </bean>
+
+    <bean id="beanTextEditor" class="com.spring.bean.TextEditor" />
+    <bean id="spellChecker" class="com.spring.di.SpellChecker" />
+</beans>

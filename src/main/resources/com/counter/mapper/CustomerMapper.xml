@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.counter.mapper.CustomerMapper">
+    <resultMap id="customerResultMap" type="com.counter.dto.Customer">
+        <id column="customer_id" javaType="java.lang.Integer" property="customerId"/>
+        <result column="store_id" javaType="java.lang.Integer" property="storeId"/>
+        <result column="first_name" javaType="java.lang.String" property="firstName"/>
+        <result column="last_name" javaType="java.lang.String" property="lastName"/>
+        <result column="email" javaType="java.lang.String" property="email"/>
+        <result column="address_id" javaType="java.lang.Integer" property="addressId"/>
+        <result column="active" javaType="java.lang.Integer" property="active"/>
+        <result column="create_date" javaType="java.util.Date" property="createDate"/>
+        <result column="last_update" javaType="java.util.Date" property="lastUpdate"/>
+    </resultMap>
+
+
+
+</mapper>

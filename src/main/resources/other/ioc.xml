@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <bean id="helloWorld" class="com.spring.ioc.HelloWorld" scope="singleton">
+     <!--   <property name="message" value="Hello World!"/>-->
+    </bean>
+
+
+    <bean id="cStartEventHandler"    class="com.spring.ioc.CStartEventHandler"/>
+     <bean id="cStopEventHandler"  class="com.spring.ioc.CStopEventHandler"/>
+
+    <bean class="com.spring.event.mail.MailSendEventListener" />
+    <bean class="com.spring.event.BookingEventsListener" />
+   <!-- <bean id="mailTest" class="MailBean" init-method="sendMail">
+        <constructor-arg index="0" value="ttt"></constructor-arg>
+        <constructor-arg index="1" value="yyy"></constructor-arg>
+    </bean>-->
+
+<!--     <bean id="dataSource"    class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+        <property name="username" value="root"/>
+         <property name="password" value="123456"/>
+    </bean>-->
+
+<!--
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <constructor-arg index="0"   value="com.mysql.jdbc.Driver"></constructor-arg>
+        <constructor-arg index="1"   value="jdbc:mysql://localhost:3306/test"></constructor-arg>
+        <constructor-arg index="2"   value="root"></constructor-arg>
+        <constructor-arg index="3"  value="123456"></constructor-arg>
+    </bean>-->
+
+</beans>

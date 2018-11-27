@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.counter.mapper.ActorMapper">
+    <resultMap id="actorResultMap" type="com.mybatis.dto.Actor">
+        <id column="id" property="id" />
+        <result column="first_name" property="firstName"/>
+        <result column="last_name" property="lastName"/>
+
+    </resultMap>
+    <update id="updateTrimActor">
+        UPDATE t_actor  ()
+    </update>
+    <select id="findAllActors" resultMap="actorResultMap">
+        SELECT id ,first_name ,last_name  FROM  t_actor
+    </select>
+
+    <select id="findActorWithNameLike"
+            resultMap="actorResultMap" parameterType="com.mybatis.dto.Actor" >
+        SELECT id ,first_name ,last_name FROM t_actor a , language l
+        WHERE 1 = 1
+        <if test="firstName != null">
+            AND first_name = #{firstName}
+        </if>
+        <if test="lastName != null">
+            AND last_name = #{lastName}
+        </if>
+        <if test="language != null and language.languageId != null  and languageId != null">
+            AND a.language_id  = l.language_id
+        </if>
+    </select>
+    <select id="queryTrimActor" resultType="com.mybatis.dto.Actor" parameterType="com.mybatis.dto.Actor" >
+        SELECT id ,first_name ,last_name FROM t_actor
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="firstName !=null and firstName.length()>0">AND first_name = #{firstName}</if>
+        </trim>
+    </select>
+    <select id="queryforeachActor" resultType="com.mybatis.dto.Actor" parameterType="java.util.List" >
+        SELECT id ,first_name ,last_name FROM t_actor
+            WHERE first_name in
+            <foreach item="item" index="index" collection="list"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+    </select>
+
+    <select id="selectActorsLike" resultType="com.mybatis.dto.Actor">
+        <bind name="pattern" value="'%' + lastName + '%'" />
+        SELECT  id ,first_name ,last_name FROM t_actor
+        WHERE last_name LIKE #{pattern}
+    </select>
+
+</mapper>
